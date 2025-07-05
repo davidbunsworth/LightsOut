@@ -19,10 +19,11 @@ namespace LightsOut
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const int gridSize = 5;
+        private const int gridSize = 2;
         private static readonly SolidColorBrush LitBrush = new SolidColorBrush(Colors.White);
         private static readonly SolidColorBrush UnlitBrush = new SolidColorBrush(Colors.Black);
         private Button[,] buttons = new Button[gridSize, gridSize];
+        private bool hasWon = false;
 
         public MainWindow()
         {
@@ -60,6 +61,9 @@ namespace LightsOut
 
         private void btnLight_Click(object sender, RoutedEventArgs e)
         {
+            if (hasWon) // Don't continue after winning
+                return;
+
             if (sender is Button btn)
             {
                 int row = Grid.GetRow(btn);
@@ -100,10 +104,11 @@ namespace LightsOut
                 for (int j = 0; j < gridSize; j++)
                 {
                     if (IsLit(buttons[i, j]))
-                        return;  // If any button is lit, return early
+                        return;
                 }
             }
 
+            hasWon = true;
             MessageBox.Show("WINNER!");
         }
 
