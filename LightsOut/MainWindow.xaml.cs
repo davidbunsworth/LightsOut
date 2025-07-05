@@ -19,7 +19,7 @@ namespace LightsOut
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const int gridSize = 2;
+        private const int gridSize = 5;
         private static readonly SolidColorBrush LitBrush = new SolidColorBrush(Colors.White);
         private static readonly SolidColorBrush UnlitBrush = new SolidColorBrush(Colors.Black);
         private Button[,] buttons = new Button[gridSize, gridSize];
